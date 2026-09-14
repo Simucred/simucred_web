@@ -49,6 +49,7 @@ jobs:
             -Dsonar.tests=src
             -Dsonar.test.inclusions=**/*.spec.ts
             -Dsonar.typescript.lcov.reportPaths=coverage/simucred/lcov.info
+            -Dsonar.exclusions=**/.github/**,**/node_modules/**,**/*.scss
 
       - name: Build Angular SSR App
         run: npm run build
