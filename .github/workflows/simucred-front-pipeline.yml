@@ -44,7 +44,7 @@ jobs:
           projectBaseDir: ./simucred
           args: >
             -Dsonar.projectKey=simucred
-            -Dsonar.organization=Simucred
+            -Dsonar.organization=simucred
             -Dsonar.sources=src
             -Dsonar.tests=src
             -Dsonar.test.inclusions=**/*.spec.ts
