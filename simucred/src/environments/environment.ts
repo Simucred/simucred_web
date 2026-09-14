@@ -1,9 +1,12 @@
+const browserWindow = globalThis as any;
+const env = browserWindow.window?.env || {};
+
 export const environment = {
   production: false,
-  apiUrl: (window as any).env?.URL_API,
+  apiUrl: env.URL_API,
   keycloak: {
-    url: (window as any).env?.KEYCLOAK_URL,
-    realm: (window as any).env?.KEYCLOAK_REALM,
-    clientId: (window as any).env?.KEYCLOAK_CLIENT_ID
+    url: env.KEYCLOAK_URL,
+    realm: env.KEYCLOAK_REALM,
+    clientId: env.KEYCLOAK_CLIENT_ID
   }
 };
