@@ -1,13 +1,10 @@
 name: CI/CD Pipeline - Simucred Web
 
 on:
-  push:
-    branches:
-      - main
-      - "feature/**"
   pull_request:
-    branches:
-      - main
+    branches: ["dev", "main"]
+  push:
+    branches: ["dev", "main"]
 
 jobs:
   build-and-analyze:
