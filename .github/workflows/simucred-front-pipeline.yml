@@ -43,7 +43,7 @@ jobs:
         with:
           projectBaseDir: ./simucred
           args: >
-            -Dsonar.projectKey=${{ secrets.SONAR_KEY }}
+            -Dsonar.projectKey=simucred
             -Dsonar.organization=Simucred
             -Dsonar.sources=src
             -Dsonar.tests=src
