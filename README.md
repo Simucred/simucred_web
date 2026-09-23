@@ -109,3 +109,43 @@ O frontend atua como camada de apresentação da plataforma e se comunica com o 
                                                                                             ┌────────────┐ ┌────────────┐
                                                                                             │ PostgreSQL │ │ AI Layer   │
                                                                                             └────────────┘ └────────────┘
+---
+
+## 🖥️ Telas
+
+| Rota | Tela |
+| --- | --- |
+| `/inicio` | Início com resumo e simulações recentes |
+| `/nova-simulacao` | Formulário de simulação de crédito |
+| `/simulacoes` | Minhas Simulações (listagem e modal de detalhes) |
+
+## ⚙️ Como executar o frontend
+
+Pré-requisito: Node.js 20+.
+
+```bash
+cd simucred
+npm install
+```
+
+**Modo mock (sem API e sem Keycloak)**, útil para desenvolver as telas:
+
+```bash
+npm run start:mock
+```
+
+**Modo normal (com API e Keycloak rodando)**:
+
+```bash
+npm start
+```
+
+A aplicação fica disponível em http://localhost:4200. As URLs da API e do Keycloak ficam em `public/env-config.js`.
+
+**Testes:**
+
+```bash
+npm test -- --no-watch
+```
+
+> A API ainda não tem endpoint de listagem de simulações (`GET /v1/simulacoes`). Por enquanto o histórico fica em memória no `SimulacaoService` e é perdido ao recarregar a página.
