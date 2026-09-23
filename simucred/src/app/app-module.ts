@@ -36,7 +36,7 @@ import { MinhasSimulacoes } from './pages/minhas-simulacoes/minhas-simulacoes';
       provide: INCLUDE_BEARER_TOKEN_INTERCEPTOR_CONFIG,
       useValue: [environment.apiUrl]
     },
-    ...(typeof window !== 'undefined' ? [
+    ...(typeof window !== 'undefined' && environment.authEnabled ? [
       provideKeycloak({
         config: environment.keycloak,
         initOptions: {
