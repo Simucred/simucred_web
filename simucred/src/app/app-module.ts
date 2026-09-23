@@ -17,6 +17,7 @@ import { Shell } from './layout/shell/shell';
 import { Inicio } from './pages/inicio/inicio';
 import { NovaSimulacao } from './pages/nova-simulacao/nova-simulacao';
 import { MinhasSimulacoes } from './pages/minhas-simulacoes/minhas-simulacoes';
+import { DetalheSimulacao } from './pages/minhas-simulacoes/detalhe-simulacao/detalhe-simulacao';
 import { StatusBadge } from './shared/status-badge/status-badge';
 
 registerLocaleData(localePt);
@@ -28,6 +29,7 @@ registerLocaleData(localePt);
     Inicio,
     NovaSimulacao,
     MinhasSimulacoes,
+    DetalheSimulacao,
     StatusBadge
   ],
   imports: [

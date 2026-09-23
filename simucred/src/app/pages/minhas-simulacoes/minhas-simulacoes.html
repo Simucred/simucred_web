@@ -70,3 +70,7 @@
     </div>
   }
 </div>
+
+@if (selecionada(); as simulacao) {
+  <app-detalhe-simulacao [simulacao]="simulacao" (fechar)="fecharDetalhes()" />
+}
