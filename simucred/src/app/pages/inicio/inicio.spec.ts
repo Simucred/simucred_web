@@ -49,7 +49,7 @@ describe('Inicio', () => {
 
     const fixture = TestBed.createComponent(Inicio);
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelectorAll('tbody tr').length).toBe(5);
+    expect(fixture.nativeElement.querySelectorAll('tbody tr')).toHaveSize(5);
     expect(fixture.nativeElement.textContent).toContain('100%');
   });
 });

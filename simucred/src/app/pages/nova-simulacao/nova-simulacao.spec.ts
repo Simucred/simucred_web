@@ -48,7 +48,7 @@ describe('NovaSimulacao', () => {
     await fixture.whenStable();
 
     expect(simulacaoService.simularCredito).not.toHaveBeenCalled();
-    expect(el.querySelectorAll('form small').length).toBe(6);
+    expect(el.querySelectorAll('form small')).toHaveSize(6);
   });
 
   it('deve enviar o CPF só com dígitos e a idade calculada', () => {

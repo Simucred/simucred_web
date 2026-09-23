@@ -52,7 +52,7 @@ describe('MinhasSimulacoes', () => {
     ]);
     const { el } = criarTela();
 
-    expect(el.querySelectorAll('tbody tr').length).toBe(2);
+    expect(el.querySelectorAll('tbody tr')).toHaveSize(2);
     expect(el.textContent).toContain('João Pereira Lima');
     expect(el.textContent).toContain('50% do total');
   });
