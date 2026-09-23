@@ -10,10 +10,18 @@ import {
   INCLUDE_BEARER_TOKEN_INTERCEPTOR_CONFIG
 } from 'keycloak-angular';
 import Keycloak from 'keycloak-js';
+import { Shell } from './layout/shell/shell';
+import { Inicio } from './pages/inicio/inicio';
+import { NovaSimulacao } from './pages/nova-simulacao/nova-simulacao';
+import { MinhasSimulacoes } from './pages/minhas-simulacoes/minhas-simulacoes';
 
 @NgModule({
   declarations: [
-    App
+    App,
+    Shell,
+    Inicio,
+    NovaSimulacao,
+    MinhasSimulacoes
   ],
   imports: [
     BrowserModule,

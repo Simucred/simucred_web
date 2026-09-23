@@ -1,0 +1,181 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, var(--navy-800), var(--navy-900));
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+  padding: 0 8px;
+}
+
+.brand strong {
+  display: block;
+  font-size: 20px;
+}
+
+.brand small {
+  color: #b8c4dc;
+  font-size: 12px;
+}
+
+.brand-logo {
+  width: 28px;
+  height: 32px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--blue-500) 50%, var(--white) 50%);
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  color: #dbe3f3;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+nav a.ativo {
+  background: var(--navy-700);
+  color: var(--white);
+}
+
+svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.slogan {
+  margin-top: auto;
+  padding: 0 8px;
+  font-size: 13px;
+  color: #b8c4dc;
+  line-height: 1.5;
+}
+
+.conteudo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  height: 64px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 32px;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.usuario {
+  position: relative;
+}
+
+.usuario-botao {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--navy-700);
+  color: var(--white);
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+}
+
+.seta {
+  width: 16px;
+  height: 16px;
+}
+
+.usuario-menu {
+  position: absolute;
+  right: 0;
+  top: 44px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.12);
+  z-index: 10;
+}
+
+.usuario-menu button {
+  background: none;
+  border: none;
+  padding: 10px 24px;
+  font: inherit;
+  cursor: pointer;
+  color: var(--red-600);
+}
+
+main {
+  padding: 32px;
+}
+
+@media (max-width: 800px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 16px;
+  }
+
+  .brand {
+    margin-bottom: 12px;
+  }
+
+  nav {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .slogan {
+    display: none;
+  }
+
+  main {
+    padding: 16px;
+  }
+}

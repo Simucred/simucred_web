@@ -1,5 +1,4 @@
-import { Component, signal, inject } from '@angular/core';
-import Keycloak from 'keycloak-js';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,14 +6,4 @@ import Keycloak from 'keycloak-js';
   standalone: false,
   styleUrl: './app.css'
 })
-export class App {
-  protected readonly title = signal('simucred_web');
-
-  private keycloak = inject(Keycloak);
-
-  logout() {
-    if (typeof window !== 'undefined') {
-      this.keycloak.logout({ redirectUri: window.location.origin });
-    }
-  }
-}
+export class App {}
