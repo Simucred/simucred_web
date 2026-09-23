@@ -1,7 +1,11 @@
 .fundo {
   position: fixed;
   inset: 0;
+  width: 100%;
+  border: none;
+  padding: 0;
   background: rgba(15, 33, 64, 0.45);
+  cursor: default;
   z-index: 20;
 }
 
@@ -13,6 +17,9 @@
   width: min(860px, calc(100vw - 32px));
   max-height: calc(100vh - 32px);
   overflow-y: auto;
+  margin: 0;
+  border: none;
+  color: inherit;
   background: var(--white);
   border-radius: var(--radius);
   padding: 24px;

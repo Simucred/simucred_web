@@ -1,8 +1,8 @@
 @let s = simulacao();
 
-<div class="fundo" (click)="fechar.emit()"></div>
+<button type="button" class="fundo" aria-label="Fechar detalhes" tabindex="-1" (click)="fechar.emit()"></button>
 
-<section class="modal" role="dialog" aria-modal="true" aria-labelledby="titulo-detalhe">
+<dialog class="modal" open aria-labelledby="titulo-detalhe">
   <header>
     <div>
       <h2 id="titulo-detalhe">Detalhes da Simulação</h2>
@@ -71,4 +71,4 @@
   <footer>
     <button type="button" class="btn btn-outline" (click)="fechar.emit()">Fechar</button>
   </footer>
-</section>
+</dialog>
