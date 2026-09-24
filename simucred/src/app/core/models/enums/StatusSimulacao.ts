@@ -1,0 +1,1 @@
+export type StatusSimulacao = 'APROVADO' | 'REPROVADO' | 'EM_ANALISE';

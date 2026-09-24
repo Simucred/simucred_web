@@ -1,5 +1,5 @@
 import { Component, computed, input, output } from '@angular/core';
-import { Simulacao } from '../../../core/models/SimulacaoResponse';
+import { SimulacaoListagem } from '../../../core/models/SimulacaoListagem';
 
 // Limite de comprometimento de renda usado pelo motor de regras do backend.
 const LIMITE_COMPROMETIMENTO = 30;
@@ -14,7 +14,7 @@ const LIMITE_COMPROMETIMENTO = 30;
   }
 })
 export class DetalheSimulacao {
-  readonly simulacao = input.required<Simulacao>();
+  readonly simulacao = input.required<SimulacaoListagem>();
   readonly fechar = output<void>();
 
   protected readonly limite = LIMITE_COMPROMETIMENTO;

@@ -1,19 +1,19 @@
-export type StatusSimulacao = 'APROVADO' | 'REPROVADO' | 'EM_ANALISE';
+import { StatusSimulacao } from "./enums/StatusSimulacao";
 
 export interface SimulacaoResponse {
   id: string;
   cpf: string;
   nome: string;
+  idade: number;
+  rendaMensal: number;
   valorSolicitado: number;
+  prazoMeses: number;
+  valorParcela: number;
+  taxaJurosMensal: number;
   status: StatusSimulacao;
   justificativaIa: string;
   dataSimulacao: string;
 }
 
-// Dados que o front guarda junto com a resposta, porque a API ainda não devolve
-// renda e prazo no response.
-export interface Simulacao extends SimulacaoResponse {
-  idade: number;
-  rendaMensal: number;
-  prazoMeses: number;
-}
+// Agora a API já devolve todos os campos — Simulacao é só um alias
+export type Simulacao = SimulacaoResponse;

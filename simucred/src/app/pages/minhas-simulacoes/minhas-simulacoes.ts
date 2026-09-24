@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { SimulacaoService } from '../../core/services/simulacao';
-import { Simulacao } from '../../core/models/SimulacaoResponse';
+import { SimulacaoListagem } from '../../core/models/SimulacaoListagem';
+import { SimulacaoResponse } from '../../core/models/SimulacaoResponse';
 
 @Component({
   selector: 'app-minhas-simulacoes',
@@ -13,14 +14,14 @@ export class MinhasSimulacoes {
 
   protected readonly simulacoes = this.simulacaoService.simulacoes;
   protected readonly resumo = this.simulacaoService.resumo;
-  protected readonly selecionada = signal<Simulacao | null>(null);
+  protected readonly selecionada = signal<SimulacaoListagem | null>(null);
 
   percentual(parte: number): number {
     const total = this.resumo().total;
     return total ? Math.round((parte / total) * 100) : 0;
   }
 
-  abrirDetalhes(simulacao: Simulacao) {
+  abrirDetalhes(simulacao: SimulacaoListagem) {
     this.selecionada.set(simulacao);
   }
 

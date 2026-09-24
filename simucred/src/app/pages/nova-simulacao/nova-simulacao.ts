@@ -4,7 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { SimulacaoService } from '../../core/services/simulacao';
 import { Simulacao } from '../../core/models/SimulacaoResponse';
 import { cpfValidator, formatarCpf, somenteDigitos } from '../../core/validators/cpf';
-import { calcularIdade, dataNascimentoValidator } from '../../core/validators/idade';
+import { dataNascimentoValidator } from '../../core/validators/idade';
 
 @Component({
   selector: 'app-nova-simulacao',
@@ -60,7 +60,7 @@ export class NovaSimulacao {
       .simularCredito({
         nome: valores.nome.trim(),
         cpf: somenteDigitos(valores.cpf),
-        idade: calcularIdade(valores.dataNascimento),
+        dataNascimento: valores.dataNascimento,
         rendaMensal: Number(valores.rendaMensal),
         valorSolicitado: Number(valores.valorSolicitado),
         prazoMeses: Number(valores.prazoMeses)

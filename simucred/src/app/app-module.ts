@@ -10,7 +10,9 @@ import { environment } from '../environments/environment';
 import {
   provideKeycloak,
   includeBearerTokenInterceptor,
-  INCLUDE_BEARER_TOKEN_INTERCEPTOR_CONFIG
+  INCLUDE_BEARER_TOKEN_INTERCEPTOR_CONFIG,
+  createInterceptorCondition,
+  IncludeBearerTokenCondition
 } from 'keycloak-angular';
 import Keycloak from 'keycloak-js';
 import { Shell } from './layout/shell/shell';
@@ -21,6 +23,15 @@ import { DetalheSimulacao } from './pages/minhas-simulacoes/detalhe-simulacao/de
 import { StatusBadge } from './shared/status-badge/status-badge';
 
 registerLocaleData(localePt);
+
+const isBrowser = typeof window !== 'undefined';
+const apiUrl = isBrowser ? (environment.apiUrl ?? '') : '';
+const escapedApiUrl = apiUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+const bearerCondition: IncludeBearerTokenCondition = createInterceptorCondition({
+  urlPattern: escapedApiUrl ? new RegExp(`^${escapedApiUrl}(/.*)?$`) : /^$/,
+  bearerPrefix: 'Bearer'
+});
 
 @NgModule({
   declarations: [
@@ -46,7 +57,7 @@ registerLocaleData(localePt);
     provideHttpClient(withFetch(), withInterceptors([includeBearerTokenInterceptor])),
     {
       provide: INCLUDE_BEARER_TOKEN_INTERCEPTOR_CONFIG,
-      useValue: [environment.apiUrl]
+      useValue: [bearerCondition]
     },
     ...(typeof window !== 'undefined' && environment.authEnabled ? [
       provideKeycloak({
