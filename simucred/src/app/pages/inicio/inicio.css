@@ -1,0 +1,122 @@
+.topo {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(240px, 1fr);
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.boas-vindas {
+  background: linear-gradient(120deg, var(--blue-50), var(--white));
+  padding: 32px;
+}
+
+.boas-vindas h1 {
+  font-size: 28px;
+}
+
+.boas-vindas p {
+  max-width: 420px;
+  line-height: 1.6;
+  color: var(--gray-700);
+  margin: 12px 0 24px;
+}
+
+h2 {
+  font-size: 16px;
+}
+
+.resumo p {
+  margin: 4px 0 16px;
+}
+
+.total {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.total strong {
+  font-size: 32px;
+}
+
+.linha-resumo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.ponto {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.verde {
+  background: var(--green-600);
+}
+
+.vermelho {
+  background: var(--red-600);
+}
+
+.indicadores {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.indicadores .card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.indicadores strong {
+  font-size: 28px;
+}
+
+.recentes {
+  overflow-x: auto;
+}
+
+.cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--gray-200);
+  white-space: nowrap;
+}
+
+th {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-500);
+}
+
+.vazio {
+  padding: 16px 0;
+}
+
+@media (max-width: 900px) {
+  .topo,
+  .indicadores {
+    grid-template-columns: 1fr;
+  }
+}

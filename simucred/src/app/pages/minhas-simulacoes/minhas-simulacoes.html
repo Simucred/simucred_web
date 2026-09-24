@@ -1,0 +1,76 @@
+<div class="page-header">
+  <div>
+    <h1>Minhas Simulações</h1>
+    <p>Acompanhe o histórico das suas simulações de crédito e o resultado de cada proposta.</p>
+  </div>
+  <a routerLink="/nova-simulacao" class="btn btn-primary">+ Nova Simulação</a>
+</div>
+
+<div class="indicadores">
+  <div class="card">
+    <span class="muted">Total de simulações</span>
+    <strong>{{ resumo().total }}</strong>
+  </div>
+  <div class="card">
+    <span class="muted">Aprovadas</span>
+    <strong class="verde">{{ resumo().aprovadas }}</strong>
+    <small class="muted">{{ percentual(resumo().aprovadas) }}% do total</small>
+  </div>
+  <div class="card">
+    <span class="muted">Reprovadas</span>
+    <strong class="vermelho">{{ resumo().reprovadas }}</strong>
+    <small class="muted">{{ percentual(resumo().reprovadas) }}% do total</small>
+  </div>
+  <div class="card">
+    <span class="muted">Em análise</span>
+    <strong class="amarelo">{{ resumo().emAnalise }}</strong>
+    <small class="muted">{{ percentual(resumo().emAnalise) }}% do total</small>
+  </div>
+</div>
+
+<div class="card tabela">
+  @if (simulacoes().length) {
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Cliente</th>
+          <th>Valor solicitado</th>
+          <th>Prazo</th>
+          <th>Resultado</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (s of simulacoes(); track s.id) {
+          <tr>
+            <td>
+              {{ s.dataSimulacao | date: 'dd/MM/yyyy' }}
+              <small class="muted">{{ s.dataSimulacao | date: 'HH:mm' }}</small>
+            </td>
+            <td>
+              {{ s.nome }}
+              <small class="muted">CPF {{ s.cpf }}</small>
+            </td>
+            <td>{{ s.valorSolicitado | currency }}</td>
+            <td>{{ s.prazoMeses }} meses</td>
+            <td><app-status-badge [status]="s.status" /></td>
+            <td>
+              <button type="button" class="btn-link" (click)="abrirDetalhes(s)">Ver detalhes</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <p class="rodape muted">Mostrando {{ simulacoes().length }} simulação(ões)</p>
+  } @else {
+    <div class="vazio">
+      <p>Você ainda não fez nenhuma simulação.</p>
+      <a routerLink="/nova-simulacao" class="btn btn-primary">Fazer minha primeira simulação</a>
+    </div>
+  }
+</div>
+
+@if (selecionada(); as simulacao) {
+  <app-detalhe-simulacao [simulacao]="simulacao" (fechar)="fecharDetalhes()" />
+}

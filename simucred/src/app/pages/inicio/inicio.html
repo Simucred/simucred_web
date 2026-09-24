@@ -1,0 +1,69 @@
+<div class="topo">
+  <div class="card boas-vindas">
+    <h1>Olá, {{ primeiroNome() }}!</h1>
+    <p>Simule seu crédito de forma rápida e segura. Descubra as melhores condições para o seu perfil.</p>
+    <a routerLink="/nova-simulacao" class="btn btn-primary">+ Nova Simulação</a>
+  </div>
+
+  <div class="card resumo">
+    <h2>Resumo</h2>
+    <p class="muted">Suas simulações em um só lugar.</p>
+    <div class="total">
+      <strong>{{ resumo().total }}</strong>
+      <span>Total de simulações</span>
+    </div>
+    <div class="linha-resumo">
+      <span class="ponto verde"></span>
+      <strong>{{ resumo().aprovadas }}</strong> aprovadas
+    </div>
+    <div class="linha-resumo">
+      <span class="ponto vermelho"></span>
+      <strong>{{ resumo().reprovadas }}</strong> reprovadas
+    </div>
+  </div>
+</div>
+
+<div class="indicadores">
+  <div class="card">
+    <span class="muted">Taxa de aprovação</span>
+    <strong>{{ resumo().taxaAprovacao }}%</strong>
+    <small class="muted">Das suas simulações foram aprovadas.</small>
+  </div>
+  <div class="card">
+    <span class="muted">Valor médio simulado</span>
+    <strong>{{ resumo().valorMedio | currency }}</strong>
+    <small class="muted">Valor médio das propostas simuladas.</small>
+  </div>
+</div>
+
+<div class="card recentes">
+  <div class="cabecalho">
+    <h2>Simulações recentes</h2>
+    <a routerLink="/simulacoes">Ver todas &rarr;</a>
+  </div>
+
+  @if (recentes().length) {
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Valor solicitado</th>
+          <th>Prazo</th>
+          <th>Resultado</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (s of recentes(); track s.id) {
+          <tr>
+            <td>{{ s.dataSimulacao | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ s.valorSolicitado | currency }}</td>
+            <td>{{ s.prazoMeses }} meses</td>
+            <td><app-status-badge [status]="s.status" /></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    <p class="muted vazio">Nenhuma simulação ainda. Que tal fazer a primeira?</p>
+  }
+</div>

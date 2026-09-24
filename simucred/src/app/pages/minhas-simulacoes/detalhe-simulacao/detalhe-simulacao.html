@@ -1,0 +1,74 @@
+@let s = simulacao();
+
+<button type="button" class="fundo" aria-label="Fechar detalhes" tabindex="-1" (click)="fechar.emit()"></button>
+
+<dialog class="modal" open aria-labelledby="titulo-detalhe">
+  <header>
+    <div>
+      <h2 id="titulo-detalhe">Detalhes da Simulação</h2>
+      <p class="muted">Informações da solicitação e resultado da análise.</p>
+    </div>
+    <button type="button" class="fechar" aria-label="Fechar" (click)="fechar.emit()">&times;</button>
+  </header>
+
+  <div class="status" [class.aprovado]="s.status === 'APROVADO'">
+    <app-status-badge [status]="s.status" />
+    <span class="muted">Solicitada em {{ s.dataSimulacao | date: "dd/MM/yyyy 'às' HH:mm" }}</span>
+  </div>
+
+  <div class="valores">
+    <div>
+      <span class="muted">Valor solicitado</span>
+      <strong>{{ s.valorSolicitado | currency }}</strong>
+    </div>
+    <div>
+      <span class="muted">Prazo</span>
+      <strong>{{ s.prazoMeses }} meses</strong>
+    </div>
+    <div>
+      <span class="muted">Parcela estimada</span>
+      <strong>{{ parcela() | currency }}</strong>
+    </div>
+  </div>
+
+  <div class="colunas">
+    <div class="bloco">
+      <h3>Dados do cliente</h3>
+      <dl>
+        <dt>Nome</dt>
+        <dd>{{ s.nome }}</dd>
+        <dt>CPF</dt>
+        <dd>{{ s.cpf }}</dd>
+        <dt>Idade</dt>
+        <dd>{{ s.idade }} anos</dd>
+        <dt>Renda mensal líquida</dt>
+        <dd>{{ s.rendaMensal | currency }}</dd>
+      </dl>
+    </div>
+
+    <div class="bloco">
+      <h3>Resumo da análise</h3>
+      <dl>
+        <dt>Comprometimento de renda</dt>
+        <dd>
+          {{ comprometimento() }}% (limite: {{ limite }}%)
+          <span class="tag" [class.ok]="dentroDoLimite()">
+            {{ dentroDoLimite() ? 'Dentro do limite' : 'Acima do limite' }}
+          </span>
+        </dd>
+      </dl>
+      <div class="explicacao">
+        <strong>Explicação da IA</strong>
+        <p>{{ s.justificativaIa }}</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="observacao muted">
+    Os valores apresentados são estimativas e podem sofrer alterações conforme a análise completa da instituição financeira.
+  </p>
+
+  <footer>
+    <button type="button" class="btn btn-outline" (click)="fechar.emit()">Fechar</button>
+  </footer>
+</dialog>

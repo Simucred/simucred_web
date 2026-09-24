@@ -1,0 +1,110 @@
+<a routerLink="/inicio" class="voltar">&larr; Voltar</a>
+
+<div class="page-header">
+  <div>
+    <h1>Nova Simulação</h1>
+    <p>Preencha os dados abaixo para simular uma proposta de crédito.</p>
+  </div>
+</div>
+
+<div class="grid">
+  <form class="card" [formGroup]="form" (ngSubmit)="simular()" novalidate>
+    <h2>Dados pessoais</h2>
+    <div class="linha">
+      <label>
+        Nome completo *
+        <input formControlName="nome" placeholder="Ex: Maria Silva Santos" [class.erro]="invalido('nome')" />
+        @if (invalido('nome')) {
+          <small>Informe o nome completo.</small>
+        }
+      </label>
+      <label>
+        CPF *
+        <input formControlName="cpf" placeholder="000.000.000-00" inputmode="numeric" maxlength="14"
+          (input)="aoDigitarCpf($event)" [class.erro]="invalido('cpf')" />
+        @if (invalido('cpf')) {
+          <small>Informe um CPF válido.</small>
+        }
+      </label>
+    </div>
+    <div class="linha">
+      <label>
+        Data de nascimento *
+        <input type="date" formControlName="dataNascimento" [class.erro]="invalido('dataNascimento')" />
+        @if (invalido('dataNascimento')) {
+          <small>Informe uma data de nascimento válida.</small>
+        }
+      </label>
+      <label>
+        Renda mensal líquida (R$) *
+        <input type="number" formControlName="rendaMensal" placeholder="0,00" min="0" step="0.01"
+          [class.erro]="invalido('rendaMensal')" />
+        @if (invalido('rendaMensal')) {
+          <small>Informe a renda mensal.</small>
+        }
+      </label>
+    </div>
+
+    <h2>Valor e prazo</h2>
+    <div class="linha">
+      <label>
+        Valor desejado (R$) *
+        <input type="number" formControlName="valorSolicitado" placeholder="0,00" min="0" step="0.01"
+          [class.erro]="invalido('valorSolicitado')" />
+        @if (invalido('valorSolicitado')) {
+          <small>O valor mínimo é R$ 100,00.</small>
+        }
+      </label>
+      <label>
+        Prazo *
+        <select formControlName="prazoMeses" [class.erro]="invalido('prazoMeses')">
+          <option [ngValue]="null" disabled>Selecione o prazo</option>
+          @for (prazo of prazos; track prazo) {
+            <option [ngValue]="prazo">{{ prazo }} meses</option>
+          }
+        </select>
+        @if (invalido('prazoMeses')) {
+          <small>Selecione o prazo.</small>
+        }
+      </label>
+    </div>
+
+    @if (erro()) {
+      <p class="alerta">{{ erro() }}</p>
+    }
+
+    <div class="acoes">
+      <button type="button" class="btn btn-outline" (click)="limpar()">Limpar</button>
+      <button type="submit" class="btn btn-primary" [disabled]="enviando()">
+        {{ enviando() ? 'Simulando...' : 'Simular' }}
+      </button>
+    </div>
+  </form>
+
+  <aside>
+    @if (resultado(); as r) {
+      <div class="card resultado" [class.aprovado]="r.status === 'APROVADO'">
+        <app-status-badge [status]="r.status" />
+        <h2>{{ r.status === 'APROVADO' ? 'Crédito aprovado!' : 'Crédito não aprovado' }}</h2>
+        <p>{{ r.justificativaIa }}</p>
+        <p class="muted">
+          {{ r.valorSolicitado | currency: 'BRL' }} em {{ r.prazoMeses }} meses
+        </p>
+        <a routerLink="/simulacoes" class="btn btn-outline">Ver minhas simulações</a>
+      </div>
+    } @else {
+      <div class="card">
+        <h2>Como funciona?</h2>
+        <ol>
+          <li>Preencha seus dados pessoais e as informações da simulação.</li>
+          <li>O sistema processa a solicitação com base nas regras de negócio.</li>
+          <li>Você recebe o resultado da análise e, se necessário, alternativas.</li>
+        </ol>
+        <div class="ia">
+          <strong>Com apoio de IA</strong>
+          <p>A IA explica o resultado da análise. A decisão é sempre do motor de regras.</p>
+        </div>
+      </div>
+    }
+  </aside>
+</div>

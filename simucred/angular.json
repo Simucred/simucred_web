@@ -66,6 +66,17 @@
                   "with": "src/environments/environment.development.ts"
                 }
               ]
+            },
+            "mock": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.mock.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -78,6 +89,9 @@
             },
             "development": {
               "buildTarget": "simucred_web:build:development"
+            },
+            "mock": {
+              "buildTarget": "simucred_web:build:mock"
             }
           },
           "defaultConfiguration": "development"
@@ -97,7 +111,8 @@
             ],
             "styles": [
               "src/styles.css"
-            ]
+            ],
+            "karmaConfig": "karma.conf.js"
           }
         }
       }

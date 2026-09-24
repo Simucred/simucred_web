@@ -1,0 +1,73 @@
+.indicadores {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.indicadores .card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.indicadores strong {
+  font-size: 28px;
+}
+
+.verde {
+  color: var(--green-600);
+}
+
+.vermelho {
+  color: var(--red-600);
+}
+
+.amarelo {
+  color: var(--amber-600);
+}
+
+.tabela {
+  padding: 8px 0 0;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--gray-200);
+  white-space: nowrap;
+}
+
+th {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-500);
+}
+
+td small {
+  display: block;
+  margin-top: 2px;
+}
+
+.rodape {
+  padding: 12px 24px;
+  margin: 0;
+}
+
+.vazio {
+  text-align: center;
+  padding: 40px 24px;
+}
+
+@media (max-width: 900px) {
+  .indicadores {
+    grid-template-columns: 1fr 1fr;
+  }
+}
