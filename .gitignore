@@ -1,0 +1,12 @@
+# Node dependencies & Angular build outputs
+node_modules/
+**/node_modules/
+.angular/
+**/.angular/
+dist/
+**/dist/
+/tmp
+/out-tsc
+*.log
+.DS_Store
+Thumbs.db

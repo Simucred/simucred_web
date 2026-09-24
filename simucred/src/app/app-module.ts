@@ -1,5 +1,5 @@
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
-import { registerLocaleData } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
@@ -45,6 +45,7 @@ const bearerCondition: IncludeBearerTokenCondition = createInterceptorCondition(
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     ReactiveFormsModule
   ],
