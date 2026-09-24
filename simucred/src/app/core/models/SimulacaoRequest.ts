@@ -1,7 +1,7 @@
 export interface SimulacaoRequest {
   cpf: string;
   nome: string;
-  idade: number;
+  dataNascimento: string;
   rendaMensal: number;
   valorSolicitado: number;
   prazoMeses: number;

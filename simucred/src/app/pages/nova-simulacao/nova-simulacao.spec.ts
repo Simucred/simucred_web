@@ -33,8 +33,8 @@ describe('NovaSimulacao', () => {
   function preencher(tela: any) {
     tela.form.setValue({
       nome: 'Maria Silva Santos',
-      cpf: '529.982.247-25',
-      dataNascimento: '1995-03-12',
+      cpf: '987.654.321-00',
+      dataNascimento: '1995-01-06',
       rendaMensal: 3500,
       valorSolicitado: 24000,
       prazoMeses: 24
@@ -51,15 +51,15 @@ describe('NovaSimulacao', () => {
     expect(el.querySelectorAll('form small')).toHaveSize(6);
   });
 
-  it('deve enviar o CPF só com dígitos e a idade calculada', () => {
+  it('deve enviar o CPF só com dígitos e a data de nascimento', () => {
     simulacaoService.simularCredito.and.returnValue(of(criarSimulacao()));
     const { tela } = criarTela();
     preencher(tela);
     tela.simular();
 
     const request = simulacaoService.simularCredito.calls.mostRecent().args[0];
-    expect(request.cpf).toBe('52998224725');
-    expect(request.idade).toBeGreaterThanOrEqual(31);
+    expect(request.cpf).toBe('98765432100');
+    expect(request.dataNascimento).toBe('1995-01-06');
     expect(request.prazoMeses).toBe(24);
   });
 
@@ -96,10 +96,10 @@ describe('NovaSimulacao', () => {
   it('deve aplicar a máscara no CPF enquanto digita', () => {
     const { tela } = criarTela();
     const input = document.createElement('input');
-    input.value = '52998224725';
+    input.value = '98765432100';
     tela.aoDigitarCpf({ target: input } as unknown as Event);
 
-    expect(tela.form.controls.cpf.value).toBe('529.982.247-25');
+    expect(tela.form.controls.cpf.value).toBe('987.654.321-00');
   });
 
   it('deve limpar o formulário e o resultado', () => {

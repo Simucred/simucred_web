@@ -1,5 +1,5 @@
 import { Component, computed, input } from '@angular/core';
-import { StatusSimulacao } from '../../core/models/SimulacaoResponse';
+import { StatusSimulacao } from '../../core/models/enums/StatusSimulacao';
 
 const ROTULOS: Record<StatusSimulacao, string> = {
   APROVADO: 'Aprovada',
