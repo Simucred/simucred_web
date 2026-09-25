@@ -148,4 +148,31 @@ A aplicação fica disponível em http://localhost:4200. As URLs da API e do Key
 npm test -- --no-watch
 ```
 
-> A API ainda não tem endpoint de listagem de simulações (`GET /v1/simulacoes`). Por enquanto o histórico fica em memória no `SimulacaoService` e é perdido ao recarregar a página.
+## 🐳 Rodando com Docker (stack completa)
+
+O jeito mais simples de subir **front, API, banco e Keycloak juntos** é pelo `docker-compose.yml` do repositório [simucred-api](https://github.com/Simucred/simucred-api). Clone os dois repositórios lado a lado e siga o README da API:
+
+```text
+pasta-qualquer/
+├── simucred-api/   ← tem o docker-compose.yml
+└── simucred_web/   ← este repositório
+```
+
+A imagem do front (`simucred/Dockerfile`) faz o build do Angular e roda o servidor SSR em Node, com usuário sem privilégios. Na subida do container, o `docker-entrypoint.sh` gera o `env-config.js` a partir das variáveis de ambiente:
+
+| Variável | Padrão |
+| --- | --- |
+| `URL_API` | `http://localhost:8080/v1` |
+| `KEYCLOAK_URL` | `http://localhost:8081` |
+| `KEYCLOAK_REALM` | `simucred` |
+| `KEYCLOAK_CLIENT_ID` | `simucred-web` |
+
+Assim a mesma imagem funciona em qualquer máquina, trocando só as variáveis.
+
+Para testar só a imagem do front:
+
+```bash
+cd simucred
+docker build -t simucred-web:local .
+docker run --rm -p 4200:4000 simucred-web:local
+```
