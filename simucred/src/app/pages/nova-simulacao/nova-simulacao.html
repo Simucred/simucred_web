@@ -1,4 +1,4 @@
-<a routerLink="/inicio" class="voltar">&larr; Voltar</a>
+﻿<a routerLink="/inicio" class="voltar">&larr; Voltar</a>
 
 <div class="page-header">
   <div>
@@ -7,7 +7,7 @@
   </div>
 </div>
 
-<div class="grid">
+<div class="grid" [class.com-resultado]="!!resultado()">
   <form class="card" [formGroup]="form" (ngSubmit)="simular()" novalidate>
     <h2>Dados pessoais</h2>
     <div class="linha">
@@ -76,7 +76,7 @@
     <div class="acoes">
       <button type="button" class="btn btn-outline" (click)="limpar()">Limpar</button>
       <button type="submit" class="btn btn-primary" [disabled]="enviando()">
-        {{ enviando() ? 'Simulando...' : 'Simular' }}
+        {{ enviando() ? 'Simulando com IA...' : 'Simular Proposta' }}
       </button>
     </div>
   </form>
@@ -84,29 +84,44 @@
   <aside>
     @if (resultado(); as r) {
     <div class="card resultado" [class.aprovado]="r.status === 'APROVADO'">
-      <app-status-badge [status]="r.status" />
-      <h2>{{ r.status === 'APROVADO' ? 'Crédito aprovado!' : 'Crédito não aprovado' }}</h2>
-      <p>{{ r.justificativaIa }}</p>
-      <p class="muted">
-        {{ r.valorSolicitado | currency: 'BRL' }} em {{ r.prazoMeses }} meses
+      <div class="resultado-topo">
+        <app-status-badge [status]="r.status" />
+        <span class="resultado-data">{{ r.dataSimulacao | date: "dd/MM/yyyy 'às' HH:mm" }}</span>
+      </div>
+
+      <h2>{{ r.status === 'APROVADO' ? 'Crédito Aprovado!' : 'Crédito Não Aprovado' }}</h2>
+      
+      <p class="resultado-destaque">
+        {{ r.valorSolicitado | currency: 'BRL' }} em {{ r.prazoMeses }} parcelas de <strong>{{ r.valorParcela | currency: 'BRL' }}</strong>
+        <span class="taxa-badge">({{ r.taxaJurosMensal | percent: '1.2-2' }} a.m.)</span>
       </p>
-      <p class="muted">
-        Parcela estimada: <strong>{{ r.valorParcela | currency: 'BRL' }}</strong>
-        ({{ r.taxaJurosMensal | percent: '1.2-2' }} a.m.)
-      </p>
-      <a routerLink="/simulacoes" class="btn btn-outline">Ver minhas simulações</a>
+
+      <app-ia-analise
+        [analise]="r.analiseIA"
+        [justificativa]="r.justificativaIa"
+        [valorSolicitado]="r.valorSolicitado"
+        [prazoMeses]="r.prazoMeses"
+        [valorParcela]="r.valorParcela"
+        [taxaJurosMensal]="r.taxaJurosMensal"
+        [rendaMensal]="r.rendaMensal"
+        [status]="r.status" />
+
+      <div class="resultado-acoes">
+        <a routerLink="/simulacoes" class="btn btn-outline">Ver todas as simulações</a>
+        <button type="button" class="btn btn-primary" (click)="limpar()">Nova Simulação</button>
+      </div>
     </div>
     } @else {
     <div class="card">
       <h2>Como funciona?</h2>
       <ol>
         <li>Preencha seus dados pessoais e as informações da simulação.</li>
-        <li>O sistema processa a solicitação com base nas regras de negócio.</li>
-        <li>Você recebe o resultado da análise e, se necessário, alternativas.</li>
+        <li>O motor de regras avalia o comprometimento de renda e conformidade financeira.</li>
+        <li>A Inteligência Artificial do Google Gemini interpreta os cálculos e gera explicações e gráficos detalhados.</li>
       </ol>
       <div class="ia">
-        <strong>Com apoio de IA</strong>
-        <p>A IA explica o resultado da análise. A decisão é sempre do motor de regras.</p>
+        <div class="ia-tag-inline">✨ Integração com Google Gemini</div>
+        <p>A IA gera análises financeiras e gráficos para apoiar sua tomada de decisão com transparência.</p>
       </div>
     </div>
     }

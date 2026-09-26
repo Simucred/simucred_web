@@ -1,5 +1,5 @@
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
-import { registerLocaleData } from '@angular/common';
+import {CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
@@ -21,6 +21,7 @@ import { NovaSimulacao } from './pages/nova-simulacao/nova-simulacao';
 import { MinhasSimulacoes } from './pages/minhas-simulacoes/minhas-simulacoes';
 import { DetalheSimulacao } from './pages/minhas-simulacoes/detalhe-simulacao/detalhe-simulacao';
 import { StatusBadge } from './shared/status-badge/status-badge';
+import { IaAnalise } from './shared/ia-analise/ia-analise';
 
 registerLocaleData(localePt);
 
@@ -41,7 +42,8 @@ const bearerCondition: IncludeBearerTokenCondition = createInterceptorCondition(
     NovaSimulacao,
     MinhasSimulacoes,
     DetalheSimulacao,
-    StatusBadge
+    StatusBadge,
+    IaAnalise
   ],
   imports: [
     BrowserModule,
