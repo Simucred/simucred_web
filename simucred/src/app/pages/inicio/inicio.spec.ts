@@ -84,4 +84,16 @@ describe('Inicio', () => {
     expect(fixture.nativeElement.querySelectorAll('tbody tr')).toHaveSize(5);
     expect(fixture.nativeElement.textContent).toContain('100%');
   });
+
+  it('deve formatar a taxa de aprovação em pt-BR', () => {
+    const service = TestBed.inject(SimulacaoService);
+    const fixture = TestBed.createComponent(Inicio);
+    fixture.detectChanges();
+
+    service.resumo.set({ total: 3, aprovadas: 2, reprovadas: 1, emAnalise: 0, taxaAprovacao: 66.66666666666667, valorMedio: 1000 });
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.textContent).toContain('66,67%');
+    expect(fixture.nativeElement.textContent).not.toContain('66.6');
+  });
 });

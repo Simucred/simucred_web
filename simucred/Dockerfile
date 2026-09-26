@@ -16,6 +16,9 @@ FROM node:20-alpine
 WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=4000
+# Hosts liberados para o SSR (proteção contra SSRF do Angular). Sem isso o
+# servidor cai para renderização no navegador. Troque ao publicar em outro domínio.
+ENV NG_ALLOWED_HOSTS=localhost,127.0.0.1
 
 COPY --from=build --chown=node:node /app/dist/simucred_web ./dist/simucred_web
 COPY --chown=node:node docker-entrypoint.sh /app/docker-entrypoint.sh
