@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+﻿import { TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -6,6 +6,7 @@ import { of, throwError } from 'rxjs';
 
 import { NovaSimulacao } from './nova-simulacao';
 import { StatusBadge } from '../../shared/status-badge/status-badge';
+import { IaAnalise } from '../../shared/ia-analise/ia-analise';
 import { SimulacaoService } from '../../core/services/simulacao';
 import { providersDeTeste } from '../../testing/test-providers';
 import { criarSimulacao } from '../../testing/simulacao-fake';
@@ -17,7 +18,7 @@ describe('NovaSimulacao', () => {
     simulacaoService = jasmine.createSpyObj<SimulacaoService>('SimulacaoService', ['simularCredito']);
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, RouterModule.forRoot([])],
-      declarations: [NovaSimulacao, StatusBadge],
+      declarations: [NovaSimulacao, StatusBadge, IaAnalise],
       providers: [...providersDeTeste(), { provide: SimulacaoService, useValue: simulacaoService }]
     });
   });
@@ -71,7 +72,7 @@ describe('NovaSimulacao', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    expect(el.querySelector('.resultado')?.textContent).toContain('Crédito não aprovado');
+    expect(el.querySelector('.resultado')?.textContent).toContain('Crédito Não Aprovado');
     expect(tela.enviando()).toBeFalse();
   });
 

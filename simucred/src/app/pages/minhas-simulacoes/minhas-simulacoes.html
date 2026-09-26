@@ -72,5 +72,5 @@
 </div>
 
 @if (selecionada(); as simulacao) {
-  <app-detalhe-simulacao [simulacao]="simulacao" (fechar)="fecharDetalhes()" />
+  <app-detalhe-simulacao [simulacao]="simulacao" [historico]="simulacoes()" (fechar)="fecharDetalhes()" />
 }

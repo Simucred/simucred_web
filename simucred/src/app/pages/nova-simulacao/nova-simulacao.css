@@ -1,13 +1,17 @@
-.voltar {
+﻿.voltar {
   display: inline-block;
   margin-bottom: 12px;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 1fr);
   gap: 24px;
   align-items: start;
+}
+
+.grid.com-resultado {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
 }
 
 h2 {
@@ -75,14 +79,24 @@ ol {
 }
 
 .ia {
-  background: var(--blue-50);
+  background: #f0f4ff;
+  border: 1px solid #dbeafe;
   border-radius: 8px;
-  padding: 12px 16px;
+  padding: 14px 16px;
+  margin-top: 12px;
+}
+
+.ia-tag-inline {
+  font-weight: 700;
+  font-size: 13px;
+  color: #1e40af;
 }
 
 .ia p {
   margin: 6px 0 0;
   color: var(--gray-700);
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 .resultado {
@@ -93,12 +107,44 @@ ol {
   border-left-color: var(--green-600);
 }
 
+.resultado-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.resultado-data {
+  font-size: 12px;
+  color: var(--gray-500);
+}
+
 .resultado h2 {
-  margin-top: 12px;
+  margin: 4px 0 8px;
+}
+
+.resultado-destaque {
+  font-size: 14px;
+  color: var(--gray-700);
+  margin: 0 0 12px;
+}
+
+.taxa-badge {
+  font-size: 12px;
+  color: var(--gray-500);
+  margin-left: 4px;
+}
+
+.resultado-acoes {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 900px) {
   .grid,
+  .grid.com-resultado,
   .linha {
     grid-template-columns: 1fr;
   }

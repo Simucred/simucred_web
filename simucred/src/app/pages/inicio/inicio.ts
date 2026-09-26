@@ -1,6 +1,7 @@
-import { Component, computed, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { SimulacaoService } from '../../core/services/simulacao';
 import { UsuarioService } from '../../core/services/usuario';
+import { SimulacaoListagem } from '../../core/models/SimulacaoListagem';
 
 @Component({
   selector: 'app-inicio',
@@ -16,8 +17,21 @@ export class Inicio implements OnInit {
   protected readonly recentes = computed(() =>
     this.simulacaoService.simulacoes().slice(0, 5)
   );
+  protected readonly selecionada = signal<SimulacaoListagem | null>(null);
+  protected readonly percentualAprovacao = computed(() => Math.min(100, Math.max(0, this.resumo().taxaAprovacao)));
+  protected readonly taxaAprovacaoFormatada = computed(() => this.resumo().taxaAprovacao.toFixed(2));
+  protected readonly circunferencia = 251.2;
+  protected readonly arcoAprovacao = computed(() => `${this.percentualAprovacao() / 100 * this.circunferencia} ${this.circunferencia}`);
 
   ngOnInit(): void {
     this.simulacaoService.carregarDashboard();
+  }
+
+  abrirDetalhes(simulacao: SimulacaoListagem): void {
+    this.selecionada.set(simulacao);
+  }
+
+  fecharDetalhes(): void {
+    this.selecionada.set(null);
   }
 }

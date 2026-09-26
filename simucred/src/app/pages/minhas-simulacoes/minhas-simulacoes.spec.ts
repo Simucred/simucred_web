@@ -1,10 +1,11 @@
-import { TestBed } from '@angular/core/testing';
+﻿import { TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import { signal, computed } from '@angular/core';
 
 import { MinhasSimulacoes } from './minhas-simulacoes';
 import { DetalheSimulacao } from './detalhe-simulacao/detalhe-simulacao';
 import { StatusBadge } from '../../shared/status-badge/status-badge';
+import { IaAnalise } from '../../shared/ia-analise/ia-analise';
 import { SimulacaoService } from '../../core/services/simulacao';
 import { Simulacao } from '../../core/models/SimulacaoResponse';
 import { providersDeTeste } from '../../testing/test-providers';
@@ -29,7 +30,7 @@ describe('MinhasSimulacoes', () => {
     lista.set([]);
     TestBed.configureTestingModule({
       imports: [RouterModule.forRoot([])],
-      declarations: [MinhasSimulacoes, DetalheSimulacao, StatusBadge],
+      declarations: [MinhasSimulacoes, DetalheSimulacao, StatusBadge, IaAnalise],
       providers: [...providersDeTeste(), { provide: SimulacaoService, useValue: serviceFake }]
     });
   });

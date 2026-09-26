@@ -57,7 +57,7 @@ a {
   border: 1px solid var(--gray-200);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 20px 24px;
+  padding: 10px 24px;
 }
 
 .btn {

@@ -1,4 +1,14 @@
-import { StatusSimulacao } from "./enums/StatusSimulacao";
+﻿import { StatusSimulacao } from './enums/StatusSimulacao';
+
+export interface DadoGrafico {
+  label: string;
+  valor: number;
+}
+
+export interface GeminiAnaliseResponse {
+  textoExplicativo: string;
+  dadosGrafico: DadoGrafico[];
+}
 
 export interface SimulacaoResponse {
   id: string;
@@ -13,7 +23,7 @@ export interface SimulacaoResponse {
   status: StatusSimulacao;
   justificativaIa: string;
   dataSimulacao: string;
+  analiseIA?: GeminiAnaliseResponse;
 }
 
-// Agora a API já devolve todos os campos — Simulacao é só um alias
 export type Simulacao = SimulacaoResponse;
