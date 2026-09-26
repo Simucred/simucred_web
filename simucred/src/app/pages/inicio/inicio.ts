@@ -19,7 +19,10 @@ export class Inicio implements OnInit {
   );
   protected readonly selecionada = signal<SimulacaoListagem | null>(null);
   protected readonly percentualAprovacao = computed(() => Math.min(100, Math.max(0, this.resumo().taxaAprovacao)));
-  protected readonly taxaAprovacaoFormatada = computed(() => this.resumo().taxaAprovacao.toFixed(2));
+  // Formato pt-BR com até 2 casas: 100 -> "100", 66.666 -> "66,67"
+  protected readonly taxaAprovacaoFormatada = computed(() =>
+    this.resumo().taxaAprovacao.toLocaleString('pt-BR', { maximumFractionDigits: 2 })
+  );
   protected readonly circunferencia = 251.2;
   protected readonly arcoAprovacao = computed(() => `${this.percentualAprovacao() / 100 * this.circunferencia} ${this.circunferencia}`);
 
