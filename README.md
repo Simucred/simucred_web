@@ -109,3 +109,70 @@ O frontend atua como camada de apresentação da plataforma e se comunica com o 
                                                                                             ┌────────────┐ ┌────────────┐
                                                                                             │ PostgreSQL │ │ AI Layer   │
                                                                                             └────────────┘ └────────────┘
+---
+
+## 🖥️ Telas
+
+| Rota | Tela |
+| --- | --- |
+| `/inicio` | Início com resumo e simulações recentes |
+| `/nova-simulacao` | Formulário de simulação de crédito |
+| `/simulacoes` | Minhas Simulações (listagem e modal de detalhes) |
+
+## ⚙️ Como executar o frontend
+
+Pré-requisito: Node.js 20+.
+
+```bash
+cd simucred
+npm install
+```
+
+**Modo mock (sem API e sem Keycloak)**, útil para desenvolver as telas:
+
+```bash
+npm run start:mock
+```
+
+**Modo normal (com API e Keycloak rodando)**:
+
+```bash
+npm start
+```
+
+A aplicação fica disponível em http://localhost:4200. As URLs da API e do Keycloak ficam em `public/env-config.js`.
+
+**Testes:**
+
+```bash
+npm test -- --no-watch
+```
+
+## 🐳 Rodando com Docker (stack completa)
+
+O jeito mais simples de subir **front, API, banco e Keycloak juntos** é pelo `docker-compose.yml` do repositório [simucred-api](https://github.com/Simucred/simucred-api). Clone os dois repositórios lado a lado e siga o README da API:
+
+```text
+pasta-qualquer/
+├── simucred-api/   ← tem o docker-compose.yml
+└── simucred_web/   ← este repositório
+```
+
+A imagem do front (`simucred/Dockerfile`) faz o build do Angular e roda o servidor SSR em Node, com usuário sem privilégios. Na subida do container, o `docker-entrypoint.sh` gera o `env-config.js` a partir das variáveis de ambiente:
+
+| Variável | Padrão |
+| --- | --- |
+| `URL_API` | `http://localhost:8080/v1` |
+| `KEYCLOAK_URL` | `http://localhost:8081` |
+| `KEYCLOAK_REALM` | `simucred` |
+| `KEYCLOAK_CLIENT_ID` | `simucred-web` |
+
+Assim a mesma imagem funciona em qualquer máquina, trocando só as variáveis.
+
+Para testar só a imagem do front:
+
+```bash
+cd simucred
+docker build -t simucred-web:local .
+docker run --rm -p 4200:4000 simucred-web:local
+```

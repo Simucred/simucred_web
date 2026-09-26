@@ -32,6 +32,13 @@ app.use(
     maxAge: '1y',
     index: false,
     redirect: false,
+    setHeaders: (res, filePath) => {
+      // O env-config.js é gerado na subida do container com as URLs do ambiente,
+      // então não pode ficar no cache do navegador.
+      if (filePath.endsWith('env-config.js')) {
+        res.setHeader('Cache-Control', 'no-cache');
+      }
+    },
   }),
 );
 

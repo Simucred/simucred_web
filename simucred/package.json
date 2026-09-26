@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:mock": "ng serve --configuration mock",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -32,6 +33,8 @@
     "@angular/router": "^20.3.0",
     "@angular/ssr": "^20.3.9",
     "express": "^5.1.0",
+    "keycloak-angular": "^20.1.0",
+    "keycloak-js": "^26.2.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },

@@ -1,0 +1,149 @@
+.fundo {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  border: none;
+  padding: 0;
+  background: rgba(15, 33, 64, 0.45);
+  cursor: default;
+  z-index: 20;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(860px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  margin: 0;
+  border: none;
+  color: inherit;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 24px;
+  z-index: 21;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+header p {
+  margin: 4px 0 0;
+}
+
+.fechar {
+  background: none;
+  border: none;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--gray-500);
+}
+
+.status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  padding: 14px 16px;
+  border-radius: 8px;
+  background: var(--red-50);
+}
+
+.status.aprovado {
+  background: var(--green-50);
+}
+
+.valores {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.valores div,
+.bloco {
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+
+.valores span {
+  display: block;
+  font-size: 13px;
+}
+
+.valores strong {
+  font-size: 18px;
+}
+
+.colunas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+h3 {
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+dl {
+  margin: 0;
+}
+
+dt {
+  font-size: 12px;
+  color: var(--gray-500);
+}
+
+dd {
+  margin: 2px 0 12px;
+  font-weight: 500;
+}
+
+.tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  background: var(--red-50);
+  color: var(--red-600);
+}
+
+.tag.ok {
+  background: var(--green-50);
+  color: var(--green-600);
+}
+
+.explicacao {
+  background: var(--blue-50);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.explicacao p {
+  margin: 6px 0 0;
+}
+
+.observacao {
+  font-size: 13px;
+}
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 700px) {
+  .valores,
+  .colunas {
+    grid-template-columns: 1fr;
+  }
+}

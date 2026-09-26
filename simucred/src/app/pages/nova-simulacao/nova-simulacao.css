@@ -1,0 +1,151 @@
+﻿.voltar {
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.grid.com-resultado {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+}
+
+h2 {
+  font-size: 16px;
+  margin: 8px 0 16px;
+}
+
+.linha {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 500;
+  color: var(--gray-700);
+}
+
+input,
+select {
+  padding: 10px 12px;
+  border: 1px solid var(--gray-300);
+  border-radius: 8px;
+  font: inherit;
+  background: var(--white);
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid var(--blue-50);
+  border-color: var(--blue-600);
+}
+
+.erro {
+  border-color: var(--red-600);
+}
+
+small {
+  color: var(--red-600);
+  font-weight: 400;
+}
+
+.alerta {
+  background: var(--red-50);
+  color: var(--red-600);
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+
+.acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+ol {
+  padding-left: 18px;
+  color: var(--gray-700);
+  line-height: 1.6;
+}
+
+.ia {
+  background: #f0f4ff;
+  border: 1px solid #dbeafe;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-top: 12px;
+}
+
+.ia-tag-inline {
+  font-weight: 700;
+  font-size: 13px;
+  color: #1e40af;
+}
+
+.ia p {
+  margin: 6px 0 0;
+  color: var(--gray-700);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.resultado {
+  border-left: 4px solid var(--red-600);
+}
+
+.resultado.aprovado {
+  border-left-color: var(--green-600);
+}
+
+.resultado-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.resultado-data {
+  font-size: 12px;
+  color: var(--gray-500);
+}
+
+.resultado h2 {
+  margin: 4px 0 8px;
+}
+
+.resultado-destaque {
+  font-size: 14px;
+  color: var(--gray-700);
+  margin: 0 0 12px;
+}
+
+.taxa-badge {
+  font-size: 12px;
+  color: var(--gray-500);
+  margin-left: 4px;
+}
+
+.resultado-acoes {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .grid,
+  .grid.com-resultado,
+  .linha {
+    grid-template-columns: 1fr;
+  }
+}
